@@ -1,0 +1,5 @@
+{
+  "name": "deploy-with-capistrano",
+  "private": true,
+  "dependencies": {}
+}
