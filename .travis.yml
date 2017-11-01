@@ -1,0 +1,14 @@
+language: ruby
+env:
+  - RAILS_ENV=test
+cache:
+  - bundler: true
+services:
+  - mysql 
+before_script:
+  - cp config/database.yml.example config/database.yml
+  - mysql -e "CREATE DATABASE deploycapistrano_test;"
+  - mysql -uroot -e "GRANT ALL PRIVILEGES ON deploycapistrano_test.* TO 'travis'@'%';";
+script:
+  - bundle exec rake db:migrate --trace
+  - bundle exec rspec spec/
